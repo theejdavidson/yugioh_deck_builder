@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  attack: 1
+  defense: 1
+  img_url: MyString
+  card_type: MyString
+  level: 1
+  description: MyText
+  name: MyString
+
+two:
+  attack: 1
+  defense: 1
+  img_url: MyString
+  card_type: MyString
+  level: 1
+  description: MyText
+  name: MyString
