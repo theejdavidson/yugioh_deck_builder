@@ -11,9 +11,11 @@ require 'open-uri'
 require 'json'
 require_relative '../config/environment.rb'
 
-models = [Card]
+models = [
+    Card
+]
 
-models.each { |model| model.destroy_all }
+models.each {|model| model.destroy_all}
 
 API_BASE= 'https://db.ygoprodeck.com/api/v6/'
 
@@ -47,28 +49,35 @@ end
 def model_cards
     data = get_all_card_data
 
-    data.each do |card|
-        create_card(card)
+    data.map do |card|
+        make_card(card)
     end
 end
 
-def create_card(data)
+
+def make_card(data)
     name = data["name"]
     attack = data["atk"]
     defense = data["def"]
-    #card_type = data["type"]
+    card_type = data["type"]
+    desc = data["desc"]
+    race = data["race"]
+    level = data["level"]
+    image = data["card_images"][0]["image_url"]
+    attr = data["attribute"]
 
-    Card.create(name: name, attack: attack, defense: defense)
+    Card.create(
+        name: name, 
+        attack: attack, 
+        defense: defense, 
+        card_type: card_type,
+        description: desc,
+        race: race,
+        level: level,
+        img_url: image,
+        attr: attr
+        )
 end
 
-# t.integer "attack"
-#     t.integer "defense"
-#     t.string "img_url"
-#     t.string "card_type"
-#     t.integer "level"
-#     t.text "description"
-#     t.string "name"
-    # t.string "race"
-    # t.string "attribute"
 
 model_cards
