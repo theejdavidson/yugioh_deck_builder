@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(version: 2020_03_23_203857) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "race"
-    t.string "attribute"
+    t.string "attr"
   end
 
   create_table "deck_cards", force: :cascade do |t|
