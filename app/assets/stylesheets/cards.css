@@ -1,11 +1,11 @@
 img.card {
-    width: 50%;
-    height: 50%;    
-    justify-self: center;
+    width: 100%;
+    height: auto;    
 }
 
 .cards {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-template-columns: repeat(5, 1fr);
+    column-gap: 10px;
 }
 
