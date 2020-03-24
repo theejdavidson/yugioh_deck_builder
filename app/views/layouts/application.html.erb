@@ -10,7 +10,16 @@
   </head>
 
   <body>
-  <div class="header"><%= link_to "Cards", "/cards"%></div>
+  <div class="header">
+    <%= link_to "Cards", "/cards"%>
+    <% if session[:user_id] %>
+      <% user = User.find_by(id: session[:user_id]) %>
+      <%= link_to user.username, user_path(user) %>
+      <%= link_to "Log out", logout_path, :class => "right" %>
+    <% else%>
+      <%= link_to "Log in", login_path, class: "right" %>
+    <% end %>
+  </div>
   <div class="page">
     <%= yield %>
   </div>
