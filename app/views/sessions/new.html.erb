@@ -1,0 +1,9 @@
+<%= form_with url: "/sessions" do %>
+Email
+<%= text_field_tag :email %>
+Password
+<%= password_field_tag :password %>
+<%= submit_tag "Log In" %>
+<% end %>
+
+<%= link_to "Don't have a login?", new_user_path %>
