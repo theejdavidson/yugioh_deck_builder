@@ -4,7 +4,15 @@ class CardsController < ApplicationController
     end
 
     def show
-        find_card
+        @card = find_card
+    end
+
+    def create
+        byebug
+    end
+
+    def filter
+        @card = Card.new
     end
     
     private
