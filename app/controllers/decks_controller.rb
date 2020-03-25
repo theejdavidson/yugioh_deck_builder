@@ -21,6 +21,10 @@ class DecksController < ApplicationController
         redirect_to deck_path(@deck)
     end
 
+    def update
+        byebug
+    end
+
     private
 
     def deck_params
