@@ -3,11 +3,18 @@ class CardsController < ApplicationController
         @cards = Card.all.limit(100)
     end
 
+    def new
+        byebug
+    end
+
     def show
         @card = find_card
+        @decks = Deck.where(user_id: current_user.id)
+        @deck_card = DeckCard.new
     end
 
     def create
+        @deck = Deck.find_by(id: params[:id])
         byebug
     end
 

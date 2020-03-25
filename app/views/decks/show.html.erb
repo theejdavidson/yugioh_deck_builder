@@ -2,8 +2,9 @@
 
 <ul>
 <% @deck.cards.each do |card| %>
-    <li><%= card.name %></li>
+    <% @deck_card = card.deck_cards.find_by(deck_id: params[:id]) %>
+    <li><%= link_to card.name, card_path(card) %><%= link_to "Remove from Deck", deck_card_path(@deck_card),  method: :delete %></li>
 <% end %>
 </ul>
 
-<%= link_to "Add cards to deck", "/search" %>
+<%= link_to "Add cards to deck", "/cards" %>
