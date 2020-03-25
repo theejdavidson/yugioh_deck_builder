@@ -4,6 +4,9 @@ class UsersController < ApplicationController
     def index
         @current_user = current_user
         @users = User.all
+        @other_users = @users.select do |user|
+            user != @current_user
+        end
     end
     
     def new
@@ -14,7 +17,7 @@ class UsersController < ApplicationController
         @user = User.new(user_params)
         if @user.save
             session[:user_id] = @user.id
-            redirect_to users_path
+            redirect_to user_path(@user)
         else
             render :new
         end
