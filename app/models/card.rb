@@ -1,7 +1,13 @@
+require 'elasticsearch/model'
 class Card < ApplicationRecord
+    include Elasticsearch::Model
+    include Elasticsearch::Model::Callbacks
     has_many :deck_cards
     has_many :decks, through: :deck_cards
     
+    index_name Rails.application.class.parent_name.underscore
+    document_type self.name.downcase
+
     def self.races
         races = self.all.map {|card| card.race }
         races.uniq
