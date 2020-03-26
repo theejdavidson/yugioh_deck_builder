@@ -6,7 +6,6 @@ class CardsController < ApplicationController
     end
 
     def new
-        byebug
     end
 
     def show
@@ -17,7 +16,6 @@ class CardsController < ApplicationController
 
     def create
         @deck = Deck.find_by(id: params[:id])
-        byebug
     end
 
     def filter

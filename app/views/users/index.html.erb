@@ -1,3 +1,13 @@
-
-<%= link_to "Log Out", logout_path, method: :delete %>
-
+<h1>Other Users:</h1>
+<ul>
+    <% @other_users.each do |user| %>
+        <% fol = Follow.find_by(followed_id: user.id, follower_id: @current_user.id) %>
+        <li><%= user.username %>
+        <% if @current_user.followings.include?(user) %>
+            <%= button_to "Unfollow", follows_path(fol) %>
+        <% else %>
+            <%= button_to "Follow", follows_path(fol) %>
+        <% end %>
+        </li>
+    <% end %>
+</ul>

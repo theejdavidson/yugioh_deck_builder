@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   resources :cards
   resources :decks
   resources :deck_cards
+  resources :follows
   resources :users, except: [:edit, :update, :destroy]
   resources :sessions, only: [:new, :create]
   delete "/logout", to: "sessions#destroy"
