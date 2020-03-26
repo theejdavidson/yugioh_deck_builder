@@ -5,14 +5,19 @@
     <% deck_card = @deck_cards.find { |dc| card.id == dc.card_id }%>
     
     <div class="item" style="font-size: 20px;">
-    <button class="ui button"><%= link_to "Remove from Deck", deck_card_path(deck_card),  method: :delete %></button><%= link_to card.name, card_path(card) %>
+    <% if @deck.user_id == @user.id %>
+        <button class="ui button"><%= link_to "Remove from Deck", deck_card_path(deck_card),  method: :delete %></button>
+    <% end %>
+    <%= link_to card.name, card_path(card) %>
     </div>
     
     
 <% end %>
 </div>
-
+<% if @deck.user_id == @user.id %>
 <button class="ui basic button"><%= link_to "Add Cards to Deck", "/cards" %></button>
-<% if @deck.cards.count > 5 %>
-<button class="ui basic button"><%= link_to "Test Hand", "/decks/#{@deck.id}/testhand" %></button>
+
+    <% if @deck.cards.count > 5 %>
+    <button class="ui basic button"><%= link_to "Test Hand", "/decks/#{@deck.id}/testhand" %></button>
+    <% end %>
 <% end %>

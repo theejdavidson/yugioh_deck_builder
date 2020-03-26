@@ -1,2 +1,28 @@
-<%= @user.username %>
+<h1><%= @user.username %></h1>
 
+<h1>Decks</h1>
+<div class="ui middle aligned selection list">
+<% @decks.each do |deck| %>
+    <div class="item" style="font-size: 20px;">
+    <%= link_to deck.name, deck_path(deck) %><br>
+    </div>
+<% end %>
+</div>
+
+<h1>Following</h1>
+<div class="ui middle aligned selection list">
+<% @followed_users.each do |f| %>
+     <div class="item" style="font-size: 20px;">
+    <%= link_to f.username, user_path(f) %><br>
+    </div>
+<% end %>
+</div>
+
+<h1>Followers</h1>
+<div class="ui middle aligned selection list">
+<% @followers.each do |f| %>
+     <div class="item" style="font-size: 20px;">
+    <%= link_to f.username, user_path(f) %><br>
+    </div>
+<% end %>
+</div>

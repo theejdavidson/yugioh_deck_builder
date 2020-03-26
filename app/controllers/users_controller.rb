@@ -4,7 +4,8 @@ class UsersController < ApplicationController
     def index
         @current_user = current_user
         @users = User.all
-        get_followed_users
+        get_other_users
+        get_followed_users(@current_user)
         @follows = Follow.all.select do |f|
             f.follower_id == @current_user.id
         end
@@ -27,6 +28,8 @@ class UsersController < ApplicationController
     def show 
         @user = User.find(params[:id])
         @decks = Deck.all.select {|deck| deck.user_id == @user.id}
+        get_followers(@user)
+        get_followed_users(@user)
     end
 
     private
@@ -41,13 +44,17 @@ class UsersController < ApplicationController
         end
     end
 
-    def get_followed_users
-        get_other_users
-        @followed_users = @other_users.select do |user|
-            current_user.followings.include?(user)
+    def get_followed_users(user)
+        @users = User.all
+        @followed_users = @users.select do |u|
+            user.followings.include?(u)
         end
     end
 
-    def get_followers 
+    def get_followers(user)
+        @users = User.all
+        @followers = @users.select do |u|
+            u.followings.include?(user)
+        end
     end
 end

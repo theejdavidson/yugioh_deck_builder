@@ -8,7 +8,14 @@ class DecksController < ApplicationController
 
     def show
         @deck = Deck.find(params[:id])
-        @deck_cards = DeckCard.select { |dc| dc.deck_id == @deck.id }
+        @user = current_user
+        @deck_cards = DeckCard.all.select { |dc| dc.deck_id == @deck.id }
+        @logged_in = logged_in?
+        # if @logged_in
+        #     @user = current_user
+        # else
+        #     @user 
+        # end
     end
 
     def new
