@@ -7,6 +7,12 @@ class UsersController < ApplicationController
         @other_users = @users.select do |user|
             user != @current_user
         end
+        @followed_users = @other_users.select do |user|
+            @current_user.followings.include?(user)
+        end
+        @follows = Follow.all.select do |f|
+            f.follower_id == @current_user.id
+        end
     end
     
     def new

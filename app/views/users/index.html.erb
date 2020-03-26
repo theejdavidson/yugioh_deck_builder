@@ -2,9 +2,9 @@
 <ul>
     <% @other_users.each do |user| %>
         <li><%= user.username %>
-        <% if @current_user.followings.include?(user) %>
-            <% fol = Follow.find_by(followed_id: user.id, follower_id: @current_user.id) %>
-            <%= button_to "Unfollow", follow_path(fol), method: :delete %>
+        <% if @followed_users.include?(user) %>
+            <% fol = @follows.find { |f| f.followed_id == user.id} %>
+            <%= button_to "Unfollow", follow_path(fol.id), method: :delete %>
         <% else %>
             <%= button_to "Follow", follows_path(follower_id: @current_user.id, followed_id: user.id) %>
         <% end %>
