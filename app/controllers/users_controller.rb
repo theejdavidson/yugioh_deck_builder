@@ -4,12 +4,7 @@ class UsersController < ApplicationController
     def index
         @current_user = current_user
         @users = User.all
-        @other_users = @users.select do |user|
-            user != @current_user
-        end
-        @followed_users = @other_users.select do |user|
-            @current_user.followings.include?(user)
-        end
+        get_followed_users
         @follows = Follow.all.select do |f|
             f.follower_id == @current_user.id
         end
@@ -37,5 +32,21 @@ class UsersController < ApplicationController
 
     def user_params
         params.require(:user).permit(:username, :email, :password)
+    end
+
+    def get_other_users
+        @other_users = @users.select do |user|
+            user != current_user
+        end
+    end
+
+    def get_followed_users
+        get_other_users
+        @followed_users = @other_users.select do |user|
+            current_user.followings.include?(user)
+        end
+    end
+
+    def get_followers 
     end
 end
