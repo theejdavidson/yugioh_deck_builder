@@ -1,13 +1,14 @@
 <h1>Other Users:</h1>
-<ul>
+<div class="ui list">
     <% @other_users.each do |user| %>
-        <li><%= user.username %>
-        <% if @followed_users.include?(user) %>
-            <% fol = @follows.find { |f| f.followed_id == user.id} %>
-            <%= button_to "Unfollow", follow_path(fol.id), method: :delete %>
-        <% else %>
-            <%= button_to "Follow", follows_path(follower_id: @current_user.id, followed_id: user.id) %>
-        <% end %>
-        </li>
+        <div class="item"style="font-size: 20px;">
+            <% if @followed_users.include?(user) %>
+                <% fol = @follows.find { |f| f.followed_id == user.id} %>
+                <button class="ui button"><%= link_to "Unfollow", follow_path(fol.id), method: :delete %></button>
+            <% else %>
+                <button class="ui button"><%= link_to "Follow", follows_path(follower_id: @current_user.id, followed_id: user.id) %></button>
+            <% end %>
+            <%= user.username %>
+        </div>
     <% end %>
-</ul>
+</div>
