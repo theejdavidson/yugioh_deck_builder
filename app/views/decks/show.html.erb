@@ -2,10 +2,10 @@
 
 <div class="ui list">
 <% @deck.cards.each do |card| %>
-    <% @deck_card = card.deck_cards.find_by(deck_id: params[:id]) %>
+    <% deck_card = @deck_cards.find { |dc| card.id == dc.card_id }%>
     
     <div class="item" style="font-size: 20px;">
-    <button class="ui button"><%= link_to "Remove from Deck", deck_card_path(@deck_card),  method: :delete %></button><%= link_to card.name, card_path(card) %>
+    <button class="ui button"><%= link_to "Remove from Deck", deck_card_path(deck_card),  method: :delete %></button><%= link_to card.name, card_path(card) %>
     </div>
     
     

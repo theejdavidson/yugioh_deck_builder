@@ -8,6 +8,7 @@ class DecksController < ApplicationController
 
     def show
         @deck = Deck.find(params[:id])
+        @deck_cards = DeckCard.select { |dc| dc.deck_id == @deck.id }
     end
 
     def new
