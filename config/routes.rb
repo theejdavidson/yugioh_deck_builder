@@ -10,4 +10,5 @@ Rails.application.routes.draw do
   get "/login", to: "sessions#new"
   get "/search", to: "cards#filter"
   patch "/decks", to: "decks#index"
+  get "/decks/:id/testhand", to: "decks#test_hand"
 end

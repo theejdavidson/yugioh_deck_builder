@@ -26,6 +26,19 @@ class DecksController < ApplicationController
         byebug
     end
 
+    def test_hand
+        @hand = []
+        @deck = Deck.find(params[:id])
+        @cards = @deck.cards
+        5.times do 
+            sample = @cards.sample
+            @hand << sample
+            @cards = @cards - [sample] 
+        end
+        byebug
+        p @hand
+    end
+
     private
 
     def deck_params
