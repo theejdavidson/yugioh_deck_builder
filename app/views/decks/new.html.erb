@@ -1,7 +1,10 @@
 <h1>Create a New Deck</h1>
-
-<%= form_for @deck do |f| %>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.3.3/dist/semantic.min.css">
+<script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.3.3/dist/semantic.min.js"></script>
+<%= form_for @deck, :html => {:class => "ui form"} do |f| %>
+<div class="field">
 <%= f.label :name %>
 <%= f.text_field :name %>
+</div>
 <%= f.submit %>
 <% end %>
