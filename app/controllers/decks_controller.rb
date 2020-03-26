@@ -22,20 +22,26 @@ class DecksController < ApplicationController
         redirect_to deck_path(@deck)
     end
 
-    def update
-        byebug
+    def friends_deck
+        
     end
 
     def test_hand
+
         @hand = []
         @deck = Deck.find(params[:id])
-        @cards = @deck.cards.map {|c| c}
-        5.times do 
-            sample = @cards.sample
-            @hand << sample
-            @cards.delete_at(@cards.index(sample))
+
+        if @deck.cards.count > 5
+            @cards = @deck.cards.map {|c| c}
+            5.times do 
+                sample = @cards.sample
+                @hand << sample
+                @cards.delete_at(@cards.index(sample))
+            end
+            render :test
+        else
+            redirect_to decks_path
         end
-        render :test
     end
 
     private

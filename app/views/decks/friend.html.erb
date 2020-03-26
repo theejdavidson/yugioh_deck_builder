@@ -1,0 +1,13 @@
+<h1><%= @deck.name %></h1><br>
+
+<div class="ui list">
+<% @deck.cards.each do |card| %>
+    
+    
+    <div class="item" style="font-size: 20px;">
+    <%= link_to card.name, card_path(card) %>
+    </div>
+    
+    
+<% end %>
+</div>
