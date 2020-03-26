@@ -12,9 +12,10 @@
   <body>
   <div class="header">
     <%= link_to "Cards", "/cards"%>
-    <%= link_to "Decks", "/decks"%>
     <% if session[:user_id] %>
       <% user = User.find_by(id: session[:user_id]) %>
+      <%= link_to "My Decks", "/decks"%>
+      <%= link_to "Other Users", users_path %>
       <%= link_to user.username, user_path(user) %>
       <%= link_to "Log out", '/logout', method: :delete, :class => "right" %>
     <% else%>
