@@ -1,12 +1,12 @@
 <h1>Other Users:</h1>
 <ul>
     <% @other_users.each do |user| %>
-        <% fol = Follow.find_by(followed_id: user.id, follower_id: @current_user.id) %>
         <li><%= user.username %>
         <% if @current_user.followings.include?(user) %>
-            <%= button_to "Unfollow", follows_path(fol) %>
+            <% @fol = Follow.find_by(followed_id: user.id, follower_id: @current_user.id) %>
+            <%= button_to "Unfollow", follows_path(@fol) %>
         <% else %>
-            <%= button_to "Follow", follows_path(fol) %>
+            <%= button_to "Follow", follows_path(follower_id: @current_user.id, followed_id: user.id) %>
         <% end %>
         </li>
     <% end %>

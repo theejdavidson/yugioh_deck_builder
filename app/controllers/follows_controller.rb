@@ -1,6 +1,8 @@
 class FollowsController < ApplicationController
     def create
-        Follow.create(follow_params)
+        byebug
+        followed = User.find(params[:followed_id])
+        Follow.create(follower: current_user, followed: followed)
         redirect_to users_path
     end
 
@@ -12,6 +14,6 @@ class FollowsController < ApplicationController
 
     private
     def follow_params
-        params.require(:follow).permit(:follower_id, :followed_id)
+        params.permit(:follower_id, :followed_id)
     end
 end
