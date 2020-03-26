@@ -1,6 +1,12 @@
-
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.3.3/dist/semantic.min.css">
+<script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.3.3/dist/semantic.min.js"></script>
+<h1>Your Decks</h1>
+<div class="ui middle aligned selection list">
 <% @decks.each do |deck| %>
+    <div class="item" style="font-size: 20px;">
     <%= link_to deck.name, deck_path(deck) %><br>
+    </div>
 <% end %>
 
-<%= link_to "Create a new deck", new_deck_path %>
+<button class="ui button"><%= link_to "Create a new deck", new_deck_path %></button>
+</div>

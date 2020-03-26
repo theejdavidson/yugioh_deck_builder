@@ -1,10 +1,17 @@
-<%= @deck.name %><br>
+<h1><%= @deck.name %></h1><br>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.3.3/dist/semantic.min.css">
+<script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.3.3/dist/semantic.min.js"></script>
 
-<ul>
+<div class="ui list">
 <% @deck.cards.each do |card| %>
     <% @deck_card = card.deck_cards.find_by(deck_id: params[:id]) %>
-    <li><%= link_to card.name, card_path(card) %><%= link_to "Remove from Deck", deck_card_path(@deck_card),  method: :delete %></li>
+    
+    <div class="item" style="font-size: 20px;">
+    <button class="ui button"><%= link_to "Remove from Deck", deck_card_path(@deck_card),  method: :delete %></button><%= link_to card.name, card_path(card) %>
+    </div>
+    
+    
 <% end %>
-</ul>
+</div>
 
-<%= link_to "Add cards to deck", "/cards" %>
+<button class="ui basic button"><%= link_to "Add Cards to Deck", "/cards" %></button>

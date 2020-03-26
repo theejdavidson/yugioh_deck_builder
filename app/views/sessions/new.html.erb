@@ -1,9 +1,18 @@
-<%= form_with url: "/sessions" do %>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.3.3/dist/semantic.min.css">
+<script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.3.3/dist/semantic.min.js"></script>
+<h1>Welcome to Yu-Gi-Oh! Deck Builder!</h1>
+<br>
+<h3>Please login with your credentials below:</h3>
+<%= form_with url: "/sessions", :html => {:class => "ui form"} do %>
+<div class="field">
 Email
 <%= text_field_tag :email %>
+</div>
+<div class="field">
 Password
 <%= password_field_tag :password %>
+</div>
 <%= submit_tag "Log In" %>
 <% end %>
-
+<br>
 <%= link_to "Don't have a login?", new_user_path %>
