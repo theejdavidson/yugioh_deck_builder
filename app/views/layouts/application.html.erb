@@ -20,9 +20,9 @@
       <% user = User.find_by(id: session[:user_id]) %>
       <a class = "item" <%= link_to "Other Users", users_path %></a>
       <a class = "item" <%= link_to user.username, user_path(user) %></a>
-      <a class = "item" <%= link_to "Log out", '/logout', method: :delete, :class => "right" %></a>
+      <a class = "item" <%= link_to "Log out", '/logout', method: :delete %></a>
     <% else%>
-      <a class = "item"<%= link_to "Log in", login_path, class: "right" %></a>
+      <a class = "item"<%= link_to "Log in", login_path %></a>
     <% end %>
     </div>
   </div>
