@@ -1,0 +1,9 @@
+<h1>Success!</h1>
+
+<div class="cards">
+<% @hand.each do |card| %>
+    <div><%= link_to image_tag(card.img_url, class: 'card'), card_path(card) %></div>
+<% end %>
+</div>
+
+<button class="ui basic button"><%= link_to "Try Again", "/decks/#{params[:id]}/testhand" %></button>
