@@ -6,7 +6,7 @@
                 <% fol = @follows.find { |f| f.followed_id == user.id} %>
                 <button class="ui button"><%= link_to "Unfollow", follow_path(fol.id), method: :delete %></button>
             <% else %>
-                <button class="ui button"><%= link_to "Follow", follows_path(follower_id: @current_user.id, followed_id: user.id) %></button>
+                <button class="ui button"><%= link_to "Follow", follows_path(follower_id: @current_user.id, followed_id: user.id), method: :post %></button>
             <% end %>
             <%= user.username %>
         </div>
