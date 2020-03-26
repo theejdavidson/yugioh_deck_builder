@@ -29,14 +29,13 @@ class DecksController < ApplicationController
     def test_hand
         @hand = []
         @deck = Deck.find(params[:id])
-        @cards = @deck.cards
+        @cards = @deck.cards.map {|c| c}
         5.times do 
             sample = @cards.sample
             @hand << sample
-            @cards = @cards - [sample] 
+            @cards.delete_at(@cards.index(sample))
         end
-        byebug
-        p @hand
+        render :test
     end
 
     private
