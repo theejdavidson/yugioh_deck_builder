@@ -24,7 +24,7 @@ class Card < ApplicationRecord
 
     def self.search(search)
         if search
-            self.all.select { |card| card.name.include?(search) }
+            self.all.select { |card| card.name.downcase.include?(search.downcase) }
         else
             Card.all.limit(500)
         end
