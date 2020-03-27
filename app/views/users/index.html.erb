@@ -8,7 +8,7 @@
             <% else %>
                 <button class="ui button"><%= link_to "Follow", follows_path(follower_id: @current_user.id, followed_id: user.id), method: :post %></button>
             <% end %>
-            <%= user.username %>
+            <%= link_to user.username, user_path(user) %>
         </div>
     <% end %>
 </div>

@@ -2,7 +2,7 @@ class CardsController < ApplicationController
     before_action :authorized
     
     def index
-        @cards = Card.all.limit(100)
+        @cards = Card.search(params[:search])
     end
 
     def new

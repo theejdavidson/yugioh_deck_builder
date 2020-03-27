@@ -21,4 +21,12 @@ class Card < ApplicationRecord
         levels = self.all.map {|card| card.level }
         levels.uniq
     end
+
+    def self.search(search)
+        if search
+            self.all.select { |card| card.name.include?(search) }
+        else
+            Card.all.limit(500)
+        end
+    end
 end
