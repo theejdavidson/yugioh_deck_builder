@@ -49,6 +49,7 @@ class UsersController < ApplicationController
         @followed_users = @users.select do |u|
             user.followings.include?(u)
         end
+        @followed_num = @followed_users.count
     end
 
     def get_followers(user)
@@ -56,5 +57,6 @@ class UsersController < ApplicationController
         @followers = @users.select do |u|
             u.followings.include?(user)
         end
+        @followers_num = @followers.count
     end
 end
