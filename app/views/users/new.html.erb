@@ -5,14 +5,20 @@
 <% end %>
 
 
-<%= form_for @user do |f| %>
+<%= form_for @user, :html => {:class => "ui form"} do |f| %>
+<div class="field">
 <%= f.label :username %>
 <%= f.text_field :username %>
+</div>
+<div class="field">
 <%= f.label :email %>
 <%= f.text_field :email %>
+</div>
+<div class="field">
 <%= f.label :password %>
 <%= f.password_field :password %>
-<%= f.submit %>
+</div>
+<%= f.submit "Create Account" %>
 <% end %>
 
 <%= link_to "Already have an account?", login_path %>
