@@ -1,9 +1,41 @@
 
-<h1><%= @card.name %></h1>
-<div class="card"><%= image_tag @card.img_url %></div>
-<%= form_for @deck_card do |f| %>
-<%= f.collection_select :deck_id, @decks, :id, :name %>
-<%= f.hidden_field :card_id, :value => @card.id %>
-<%= f.submit "Add to Deck" %>
-<% end %>
+<div class="card"><%= image_tag @card.img_url, alt: @card.name %></div>
 
+<div style="padding:30px;">
+<%= form_for @deck_card do |f| %>
+<%= f.collection_select :deck_id, @decks, :id, :name, {}, {:class => "ui selection dropdown"} %>
+<%= f.hidden_field :card_id, :value => @card.id %>
+<%= f.submit "Add to Deck", class: "ui button" %>
+<% end %>
+</div>
+
+<div style="padding:30px;margin:30px;">
+<h1><%= @card.name %></h1>
+<p>Type: <%= @card.card_type %></p>
+<p><%= @card.attr %></p>
+<p><%= "ATK: #{@card.attack}" if @card.attack %></p>
+<p><%= "DEF: #{@card.defense}" if @card.defense %></p>
+<p><%= @card.race %></p>
+<p><%= @card.description %></p>
+</div>
+<%# <div class="ui selection dropdown">
+  <input type="hidden" name="gender">
+  <i class="dropdown icon"></i>
+  <div class="default text">Gender</div>
+  <div class="menu">
+    <div class="item" data-value="1">Male</div>
+    <div class="item" data-value="0">Female</div>
+  </div>
+</div> %>
+
+<%# t.integer "attack"
+    t.integer "defense"
+    t.string "img_url"
+    t.string "card_type"
+    t.integer "level"
+    t.text "description"
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "race"
+    t.string "attr" %>

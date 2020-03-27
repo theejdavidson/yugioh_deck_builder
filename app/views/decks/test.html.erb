@@ -5,5 +5,7 @@
     <div><%= link_to image_tag(card.img_url, class: 'card'), card_path(card) %></div>
 <% end %>
 </div>
-
-<button class="ui basic button"><%= link_to "Try Again", "/decks/#{params[:id]}/testhand" %></button>
+<button class="ui basic button"><%= link_to "Try Again", test_hand_path(@deck) %></button><br>
+<%= "Number of Monsters: #{@mons.count}" if @mons %><br>
+<%= "Number of Spells: #{@spells.count}" if @spells %><br>
+<%= "Number of Traps: #{@traps.count}" if @traps %><br>

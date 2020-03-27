@@ -26,8 +26,10 @@ class Card < ApplicationRecord
         if search
             s = search.downcase
             self.all.select do |card|
-                card.name.downcase.include?(s) || card.card_type.downcase.include?(s) || card.race.downcase.include?(s)
-                # || card.description.downcase.include?(s)
+                card.name.downcase.include?(s) ||
+                card.card_type.downcase.include?(s) ||
+                card.race.downcase.include?(s) ||
+                card.description.downcase.include?(s)
             end
         else
             Card.all.limit(500)

@@ -11,11 +11,6 @@ class DecksController < ApplicationController
         @user = current_user
         @deck_cards = DeckCard.all.select { |dc| dc.deck_id == @deck.id }
         @logged_in = logged_in?
-        # if @logged_in
-        #     @user = current_user
-        # else
-        #     @user 
-        # end
     end
 
     def new
@@ -45,10 +40,23 @@ class DecksController < ApplicationController
                 @hand << sample
                 @cards.delete_at(@cards.index(sample))
             end
+            @mons = []
+            @traps = []
+            @spells = []
+            @hand.each do |card|
+                if card.card_type.include?("Monster")
+                    @mons << card
+                elsif card.card_type.include?("Spell")
+                    @spells << card
+                else 
+                    @traps << card
+                end
+            end
             render :test
         else
             redirect_to decks_path
         end
+        
     end
 
     private

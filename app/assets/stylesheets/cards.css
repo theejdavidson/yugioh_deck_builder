@@ -12,6 +12,7 @@ img.card {
 
 .card {
     float: left;
+    padding: 10px;
 }
 
 .card_show {
